@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block headerbottomright %}
+<a>TABELA</a>
+{% endblock %}
+
+{% block content-right %}
+
+<div class = "content-teamstats">
+
+<div class="ptable">
+  <h1 class="headin">Tabela</h1>
+	<table>
+        <tr class="col">
+            <th>#</th>
+            <th>Team</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>PTS</th>
+        </tr>
+{%for teamstats in teamstats%}
+
+        <tr class="wpos">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ teamstats.idTeam.name }}</td>
+            <td>{{ teamstats.numberOfMatchesWon }}</td>
+            <td>{{ teamstats.numberOfDraws }}</td>
+            <td>{{ teamstats.numberOfMatchesLost }}</td>
+            <td>{{ teamstats.numberOfScores }}</td>
+        </tr>
+
+{%endfor%}
+    </table>
+</div>
+
+    <div class="ptable">
+    <h1 class="headin" >Krol Strzelcow</h1>
+    <table>
+        <tr class="col">
+            <th>#</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Druzyna</th>
+            <th>bramki</th>
+        </tr>
+
+        {%for player in king_of_goals%}
+        <tr class="wpos">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ player.pesel.firstName }}</td>
+            <td>{{ player.pesel.secondName}}</td>
+            <td>{{ player.pesel.id_team.name}}</td>
+            <td>{{ player.numberOfGoals }}</td>
+        </tr>
+
+{%endfor%}
+    </table>
+    </div>
+
+
+</div>
+{% endblock %}

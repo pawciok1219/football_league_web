@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block headerbottomright %}
+
+<a>Edycja statystyk zawodnika</a>
+{% endblock %}
+
+{% block content-right %}
+
+    <div class="card" style="width: 25rem;">
+      <div class="card-body">
+        <h3 class="card-title">Edycja statystyk zawodnika</h3>
+          <form method = "post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+              <br>
+
+            <button type = "submit" class="btn btn-primary" >Zatwierdz <i class="fas fa-sign-in-alt"></i></button>
+          </form>
+
+
+      </div>
+    </div>
+
+<br>
+
+
+
+       <form method="post" action="{% url 'mainapp:protocol_refree' idmatch %}">
+           {% csrf_token %}
+           <button type='submit ' class="btn btn-light" >Cofnij <i class="fas fa-backward"></i></button>
+        </form>
+
+{% endblock %}

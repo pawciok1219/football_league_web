@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block headerbottomright %}
+    <a>MATCH</a>
+{% endblock %}
+
+{% block content-right %}
+    <div class="content-match-edit">
+
+        <div class="content-match-edit-wrapper">
+            <div class="content-match-homeguest-wrapper">
+                <img src="{{ MEDIA_URL }}{{homeTeam.logo}}" class="logo-druzyna" width="200" height="250">
+                <h2><strong>{{ match.Home }}</strong></h2>
+            </div>
+            <div class="content-match-homeguest-wrapper">
+                <img src="{{ MEDIA_URL }}{{guestTeam.logo}}" class="logo-druzyna" width="200" height="250">
+                <h2><strong>{{ match.Guest }}</strong></h2>
+            </div>
+        </div>
+
+        <h2><strong> Score </strong></h2>
+
+        <div class="ui statistics">
+          <div class="statistic">
+            <div class="value">
+              {% if match.finished_by_refree != -1 %}
+                    <td>{{ match.homeGoals }}</td>
+                    {% else %}
+                    <td>{{ "- " }}</td>
+                    {%  endif %}
+            </div>
+            <div class="label">
+            </div>
+
+          </div>
+          <div class="statistic">
+            <div class="value">
+                {% if match.finished_by_refree != -1 %}
+                    <td>{{ match.guestGoals }}</td>
+                    {% else %}
+                    <td>{{ "- " }}</td>
+                    {%  endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="match-edit-players-wrapper">
+                <div class="match-edit-players-home">
+        {% for player in players_home %}
+                <p>
+                {{ forloop.counter }}
+                {{ player.firstName }}
+                {{ player.secondName }}
+                {{ player.age }}
+                {{ player.position }}
+                <td><a href = "{% url 'mainapp:edit_stats_player' player.pesel match.idMatch%}">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-pen-square"></i></button></a></td>
+
+                </p>
+        {% empty %}
+            <p>Aktualnie nie ma zadnych pilkarzy </p>
+        {% endfor %}
+                </div>
+                <div class="match-edit-players-guest">
+            {% for player in players_guest %}
+
+                <p>
+                {{ forloop.counter }}
+                {{ player.firstName }}
+                {{ player.secondName }}
+                {{ player.age }}
+                {{ player.position }}
+                <td><a href = "{% url 'mainapp:edit_stats_player' player.pesel match.idMatch%}"><button type="button" class="btn btn-primary"><i class="fas fa-pen-square"></i></button></a></td>
+                </p>
+        {% empty %}
+            <p>Aktualnie nie ma zadnych pilkarzy </p>
+            {% endfor %}
+                </div>
+        </div>
+    </div>
+{% endblock %}
+

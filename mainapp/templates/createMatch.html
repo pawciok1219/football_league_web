@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block headerbottomright %}
+<a>Dodaj match</a>
+{% endblock %}
+
+{% block content-right %}
+
+    <div class="card" style="width: 25rem;">
+      <div class="card-body">
+        <h5 class="card-title">Dodaj Pilkarza</h5>
+          <form method = "post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+              <br>
+              <button type = "submit" class="btn btn-primary" >Dodaj <i class="fas fa-plus"></i></button>
+
+          </form>
+
+      </div>
+
+    </div>
+
+            <form method="post" action="{% url 'mainapp:matches' %}">
+            {% csrf_token %}
+           <button type='submit' class="btn btn-light" >Cofnij <i class="fas fa-backward"></i></button>
+            </form>
+
+<br>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block headerbottomright %}
+<a>Edytuj pilkarza</a>
+{% endblock %}
+
+{% block content-right %}
+
+    <div class="card" style="width: 25rem;">
+      <div class="card-body">
+        <h5 class="card-title">Edytuj pilkarza</h5>
+          <form method = "post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+              <br>
+
+              <button type = "submit" class="btn btn-primary" >Zatwierdz zmiany <i class="fas fa-check"></i></button>
+
+          </form>
+
+      </div>
+
+    </div>
+
+            <form method="post" action="{% url 'mainapp:team' %}">
+            {% csrf_token %}
+           <button type='submit' class="btn btn-light" >Cofnij <i class="fas fa-backward"></i></button>
+            </form>
+
+<br>
+
+
+
+
+{% endblock %}

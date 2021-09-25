@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block headerbottomright %}
+    <a>TEAM</a>
+{% endblock %}
+
+{% block content-right %}
+    <div class="content-players">
+<!--        <p> {{logo}}</p>-->
+        <div class="content-players-wrapper">
+        <img src="{{ MEDIA_URL }}{{team.logo}}" class="logo-druzyna" width="200" height="250" style="margin-top: 30px"> <!--ADAM TUTAJ MUSISZ naprawic mi wyswietlanie logo - te twoje rwd / flexbox cos tam -->
+        <h2><strong>{{ team.name }} </strong></h2>
+        <h3>Data zalozenia: {{ team.date_creation }}</h3>
+        <h3>Trener: {{ trainer.firstname }} {{ trainer.secondname }} </h3>
+        <p> </p>
+        </div>
+            <hr>
+
+<div class="ui statistics">
+  <div class="statistic">
+    <div class="value">
+        <i class="fas fa-arrow-up"></i>
+      {{ stats_team.numberOfScores }}
+    </div>
+    <div class="label">
+      Points in League
+    </div>
+  </div>
+  <div class="statistic">
+    <div class="value">
+        {{ stats_team.numberOfMatchesWon }}
+    </div>
+          <div class="label">
+      Winning Matches
+    </div>
+  </div>
+      <div class="statistic">
+    <div class="value">
+        {{ stats_team.numberOfMatchesLost }}
+    </div>
+          <div class="label">
+      Lost Matches
+    </div>
+  </div>
+  <div class="statistic">
+    <div class="value">
+        {{ stats_team.numberOfDraws }}
+    </div>
+    <div class="label">
+        Draw Matches
+    </div>
+  </div>
+  <div class="statistic">
+    <div class="value">
+      <i class="fas fa-futbol"></i>
+        {{ count_scored_goals }}
+    </div>
+    <div class="label">
+      Goals Scored
+    </div>
+  </div>
+  <div class="statistic">
+    <div class="value">
+      <i class="fas fa-times"></i>
+      {{ stats_team.numberOfGoalsLost }}
+    </div>
+    <div class="label">
+      Goals Lost
+    </div>
+  </div>
+</div>
+
+    </div>
+{% endblock %}

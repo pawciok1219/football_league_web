@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block headerbottomright %}
+    <a>ALERT</a>
+{% endblock %}
+
+{% block content-right %}
+
+    <p>Czy napewno chcesz usunac {{player.firstName}} {{player.secondName}} z drużyny ?</p>
+    <br>
+    <hr>
+            <form method="post">
+            {% csrf_token %}
+            <button type='submit' class="btn btn-primary" >Zatwierdz <i class="fas fa-check"></i> </button>
+            </form>
+
+    <br>
+            <form method="post" action="{% url 'mainapp:team' %}">
+            {% csrf_token %}
+            <button type='submit' class="btn btn-light" >Cofnij <i class="fas fa-backward"></i></button>
+            </form>
+
+
+{% endblock %}
+

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block headerbottomright %}
+<a>Login</a>
+{% endblock %}
+
+{% block content-right %}
+
+    <div class="card" style="width: 20rem;">
+      <div class="card-body">
+        <h3 class="card-title"> Zaloguj sie </h3>
+          <form method = "post">
+
+        {% csrf_token %}
+        {{ form|bootstrap }}
+              <br>
+
+        <button id="zaloguj" type = "submit" class="btn btn-primary" >Zaloguj <i class="fas fa-sign-in-alt"></i></button>
+          </form>
+
+          <br>
+
+       <form method="post" action="{% url 'mainapp:register' %}" >
+           {% csrf_token %}
+           <button type='submit ' class="btn btn-secondary" >Zarejestruj sie <i class="fas fa-user-plus"></i> </button>
+        </form>
+
+      </div>
+    </div>
+
+{% endblock %}

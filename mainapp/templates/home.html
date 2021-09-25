@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block headerbottomright %}
+<a>LIGA</a>
+{% endblock %}
+
+{% block content-right %}
+
+{#{%for team in teams%}#}
+{#<div class="card" style="width: 18rem;">#}
+{#  <img src="{{ MEDIA_URL }}{{team.logo}}" class="logo-druzyna">#}
+{#  <div class="card-body">#}
+{#    <h5 class="card-title">{{team}}</h5>#}
+{#    <p class="card-text">{{team.date_creation}}</p>#}
+{#  </div>#}
+{#</div>#}
+        <div class="card-group-wrapper-column">
+{%for team in teams%}
+        <div class="card-group">
+          <div class="card" style="width: 20rem;">
+            <img src="{{ MEDIA_URL }}{{team.logo}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-title"> <strong>{{ team.name }} </strong></p>
+              <p class="card-text">Data założenia: {{ team.date_creation }}</p>
+            </div>
+            <div class="card-footer">
+                <a href = "{% url 'mainapp:show_team_stats' team.id_team %}"><small class="text-muted"><button type="button" class="btn btn-secondary btn-sm">Wyświetl statystyki w lidze</button></small></a>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+<br>
+
+{%endfor%}
+        </div>
+
+{% endblock %}

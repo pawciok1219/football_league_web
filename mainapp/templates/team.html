@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block headerbottomright %}
+    <a>TEAM</a>
+{% endblock %}
+
+{% block content-right %}
+    <div class="content-players">
+<!--        <p> {{logo}}</p>-->
+
+          <img src="{{ MEDIA_URL }}{{logo}}" class="logo-druzyna" width="200" height="250"> <!--ADAM TUTAJ MUSISZ naprawic mi wyswietlanie logo - te twoje rwd / flexbox cos tam -->
+        <h2>{{ nameTeam }}</h2>
+        <h3>Data zalozenia: {{ date_creation }}</h3>
+        <br>
+        {% if number_of_players < 25 %}
+            <a href = "{% url 'mainapp:create_player' %}"><button type="button" class="btn btn-primary">Dodaj piłkarza <i class="fas fa-plus"></i></button></a>
+        {% endif %}
+        <hr>
+    <table>
+        <tr class="col">
+            <th>#</th>
+            <th>First Name</th>
+            <th>Second Name</th>
+            <th>Age</th>
+            <th>Position</th>
+            <th>Status Health</th>
+            <th>Team</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for player in players %}
+
+            <tr class="wpos">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ player.firstName }}</td>
+                <td>{{ player.secondName }}</td>
+                <td>{{ player.age }}</td>
+                <td>{{ player.position }}</td>
+                <td>{{ player.statusHealth }}</td>
+                <td>{{ player.id_team.name }}</td>
+                <td><a href = "{% url 'mainapp:edit_player' player.pesel %}"><button type="button" class="btn btn-primary"><i class="fas fa-user-edit"></i></button></a></td>
+                <td><a href = "{% url 'mainapp:delete_player' player.pesel %}"><button type="button" class="btn btn-danger"><i class="fas fa-user-minus"></i></button></a></td>
+            </tr>
+        {% empty %}
+            <p>Aktualnie nie ma zadnych pilkarzy </p>
+
+        {% endfor %}
+
+    </table>
+    </div>
+{% endblock %}

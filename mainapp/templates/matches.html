@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load user_tags %}
+
+{% block headerbottomright %}
+    <a>TERMINARZ MECZY</a>
+{% endblock %}
+
+{% block content-right %}
+    <div class="content-matches">
+
+        <div class="submitButtons">
+
+                <form action="{% url 'mainapp:matches' %}" method="get">
+                <label> <strong> Wybierz kolejke: </strong> </label>
+                <select name="queueid" style="margin-left: 10px">
+                    {% for queue in queues %}
+
+                        <option {% if queue == selected_choice %} selected{% endif %} name="choice"
+                                                                                      value="{{ queue.idQueue }}">{{ queue }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" id="getButton" class="btn btn-primary" style="margin-left: 10px"><i
+                        class="fa fa-cog"></i> Wybierz
+                </button>
+                </form>
+
+        </div>
+
+        <table id="gameDataTable">
+            <tr class="col">
+                <th class="title">Home Team</th>
+                <th class="title">Guest Team</th>
+                <th class="title">Date</th>
+                <th class="title">Score</th>
+                {% if request.user|has_group:"Sedzia"%}
+                <th class="title">Edit</th>
+                {%  endif %}
+
+            </tr>
+            {% for match in matches %}
+
+                <tr class="wpos">
+                    <td>{{ match.Home }}</td>
+                    <td>{{ match.Guest }}</td>
+                    <td>{{ match.startDate }}</td>
+                    {% if match.finished_by_refree != -1 %}
+                    <td>{{ match.homeGoals }}:{{ match.guestGoals }}</td>
+                    {% else %}
+                    <td>{{ "- " }}:{{ " -" }}</td>
+                    {%  endif %}
+                    {% if request.user|has_group:"Sedzia"%}
+                    <td><a href = "{% url 'mainapp:protocol_refree' match.idMatch %}"><button type="button" class="btn btn-primary"><i class="fas fa-user-edit"></i></button></a></td>
+                    {%  endif %}
+                </tr>
+            {% endfor %}
+
+
+        </table>
+
+    </div>
+{% endblock %}

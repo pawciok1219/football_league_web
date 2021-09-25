@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block headerbottomright %}
+<a>ABOUT</a>
+{% endblock %}
+
+{% block content-right %}
+
+{% if model %}
+<h1>{{ model.title }}</h1>
+<p>{{ model.content | safe }}</p>
+{% else %}
+<p>Białostocka Liga Uniwersytecka jest inicjatywą Urzędu Miejskiego w Białymstoku. Pierwsza edycja rozgrywek miała miejsce jesienią 2007 roku. Od 2009 roku organizacja Białostockiej Ligi Uniwersteckiej przypadła w udziale Białostockiemu Ośrodkowi Sportu i Rekreacji.
+Aktualnie współzawodnictwo prowadzone jest dyscyplinie jaką jest piłka nożna. Rozgrywki Białostockiej Ligi Uniwersteckiej skierowane są tylko do amatorów, którzy nie uczestniczą w żaden sposób w sporcie wyczynowym. </p>
+{% endif %}
+
+{% endblock %}

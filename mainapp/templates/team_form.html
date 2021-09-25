@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block headerbottomright %}
+
+<a>Stwórz nowy team</a>
+{% endblock %}
+
+{% block content-right %}
+
+    <div class="card" style="width: 25rem;">
+      <div class="card-body">
+        <h5 class="card-title">Stwórz nowy team</h5>
+          <form method = "post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+              <br>
+
+            <button type = "submit" class="btn btn-primary" >Dodaj <i class="fas fa-sign-in-alt"></i></button>
+          </form>
+
+
+      </div>
+    </div>
+
+<br>
+
+
+
+       <form method="post" action="{% url 'login' %}">
+           {% csrf_token %}
+           <button type='submit ' class="btn btn-light" >Cofnij <i class="fas fa-backward"></i></button>
+        </form>
+
+{% endblock %}
